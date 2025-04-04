@@ -20,7 +20,7 @@ from scripts.cat.names import Name
 from scripts.cat.pelts import Pelt
 from scripts.cat.personality import Personality
 from scripts.cat.skills import CatSkills
-from scripts.cat.thoughts import Thoughts
+from scripts.cat import thoughts
 from scripts.cat_relations.inheritance import Inheritance
 from scripts.cat_relations.relationship import Relationship
 from scripts.conditions import (
@@ -32,7 +32,7 @@ from scripts.conditions import (
     amount_clanmembers_covered,
 )
 from scripts.event_class import Single_Event
-from scripts.events_module.generate_events import GenerateEvents
+from scripts.events_module import generate_events
 from scripts.game_structure import image_cache
 from scripts.game_structure.game_essentials import game
 from scripts.game_structure.screen_settings import screen
@@ -152,8 +152,6 @@ class Cat:
         ):  # This must be at the top. It's a smaller list of things to init, which is only for faded cats
             self.init_faded(ID, status, prefix, suffix, moons, **kwargs)
             return
-
-        self.generate_events = GenerateEvents()
 
         # Private attributes
         self._mentor = None  # plz
@@ -573,8 +571,8 @@ class Cat:
         if self.status == "leader":
             if game.clan.leader_lives > 0:
                 lives_left = game.clan.leader_lives
-                death_thought = Thoughts.leader_death_thought(
-                    self, lives_left, darkforest
+                death_thought = thoughts.leader_death_thought(
+                    lives_left, darkforest
                 )
                 final_thought = event_text_adjust(self, death_thought, main_cat=self)
                 self.thought = final_thought
@@ -583,7 +581,7 @@ class Cat:
                 self.dead = True
                 game.just_died.append(self.ID)
                 game.clan.leader_lives = 0
-                death_thought = Thoughts.leader_death_thought(self, 0, darkforest)
+                death_thought = thoughts.leader_death_thought(0, darkforest)
                 final_thought = event_text_adjust(self, death_thought, main_cat=self)
                 self.thought = final_thought
                 if game.clan.instructor.df is False:
@@ -595,7 +593,7 @@ class Cat:
         else:
             self.dead = True
             game.just_died.append(self.ID)
-            death_thought = Thoughts.new_death_thought(self, darkforest, isoutside)
+            death_thought = thoughts.new_death_thought(darkforest, isoutside)
             final_thought = event_text_adjust(self, death_thought, main_cat=self)
             self.thought = final_thought
 
@@ -718,7 +716,7 @@ class Cat:
                 possible_strings = []
                 for x in very_high_values:
                     possible_strings.extend(
-                        self.generate_events.possible_death_reactions(
+                        generate_events.possible_death_reactions(
                             family_relation, x, cat.personality.trait, body_status
                         )
                     )
@@ -811,7 +809,7 @@ class Cat:
                 possible_strings = []
                 for x in high_values:
                     possible_strings.extend(
-                        self.generate_events.possible_death_reactions(
+                        generate_events.possible_death_reactions(
                             family_relation, x, cat.personality.trait, body_status
                         )
                     )
@@ -1581,7 +1579,7 @@ class Cat:
         other_cat = all_cats.get(other_cat)
 
         # get chosen thought
-        chosen_thought = Thoughts.get_chosen_thought(
+        chosen_thought = thoughts.get_chosen_thought(
             self, other_cat, game_mode, biome, season, camp
         )
 
