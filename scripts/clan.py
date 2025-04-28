@@ -19,7 +19,7 @@ import ujson
 
 from scripts.cat.cats import Cat, cat_class
 from scripts.cat.history import History
-from scripts.cat.names import names
+from scripts.cat.names import Name
 from scripts.cat.sprites import sprites
 from scripts.clan_resources.freshkill import FreshkillPile, Nutrition
 from scripts.clan_resources.herb.herb_supply import HerbSupply
@@ -41,6 +41,44 @@ class Clan:
 
     """
 
+    __slots__ = (
+        "history", # TODO: remove after #3392 is merged
+        "name",
+        "leader",
+        "leader_lives",
+        "leader_predecessors",
+        "deputy",
+        "deputy_predecessors",
+        "medicine_cat",
+        "med_cat_list",
+        "med_cat_number",
+        "med_cat_predecessors",
+        "age",
+        "current_season",
+        "starting_season",
+        "instructor",
+        "biome",
+        "camp_bg",
+        "chosen_symbol",
+        "game_mode",
+        "pregnancy_data",
+        "inheritance",
+        "custom_pronouns",
+        "clan_settings",
+        "setting_lists",
+        "_reputation",
+        "starting_members",
+        "freshkill_pile",
+        "herb_supply",
+        "primary_disaster",
+        "secondary_disaster",
+        "war",
+        "last_focus_change",
+        "clans_in_focus",
+        "faded_ids",
+        "settings_changed",
+    )
+
     BIOME_TYPES = ["Forest", "Plains", "Mountainous", "Beach"]
 
     CAT_TYPES = [
@@ -56,7 +94,6 @@ class Clan:
         "general",
     ]
 
-    leader_lives = 0
     clan_cats = []
     starclan_cats = []
     darkforest_cats = []
@@ -85,8 +122,6 @@ class Clan:
     with open("resources/placements.json", "r", encoding="utf-8") as read_file:
         layouts = ujson.loads(read_file.read())
 
-    age = 0
-    current_season = "Newleaf"
     all_clans = []
 
     def __init__(
@@ -259,12 +294,12 @@ class Clan:
         for _ in range(number_other_clans):
             other_clan_names = [str(i.name) for i in self.all_clans] + [game.clan.name]
             other_clan_name = choice(
-                names.names_dict["normal_prefixes"] + names.names_dict["clan_prefixes"]
+                Name.names_dict["normal_prefixes"] + Name.names_dict["clan_prefixes"]
             )
             while other_clan_name in other_clan_names:
                 other_clan_name = choice(
-                    names.names_dict["normal_prefixes"]
-                    + names.names_dict["clan_prefixes"]
+                    Name.names_dict["normal_prefixes"]
+                    + Name.names_dict["clan_prefixes"]
                 )
             other_clan = OtherClan(name=other_clan_name)
             self.all_clans.append(other_clan)
@@ -1321,8 +1356,8 @@ class OtherClan:
     ]
 
     def __init__(self, name="", relations=0, temperament="", chosen_symbol=""):
-        clan_names = names.names_dict["normal_prefixes"]
-        clan_names.extend(names.names_dict["clan_prefixes"])
+        clan_names = Name.names_dict["normal_prefixes"]
+        clan_names.extend(Name.names_dict["clan_prefixes"])
         self.name = name or choice(clan_names)
         self.relations = relations or randint(8, 12)
         self.temperament = temperament or choice(self.temperament_list)

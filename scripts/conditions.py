@@ -82,6 +82,21 @@ class Illness:
     TODO: DOCS
     """
 
+    __slots__ = (
+        "name",
+        "severity",
+        "mortality",
+        "infectiousness",
+        "duration",
+        "medicine_duration",
+        "medicine_mortality",
+        "risks",
+        "herbs",
+        "new",
+        "_current_duration",
+        "_current_mortality",
+    )
+
     def __init__(self,
                  name,
                  severity,
@@ -164,6 +179,22 @@ class Injury:
     TODO: DOCS
     """
 
+    __slots__ = (
+        "name",
+        "severity",
+        "duration",
+        "medicine_duration",
+        "mortality",
+        "risks",
+        "illness_infectiousness",
+        "also_got",
+        "cause_permanent",
+        "herbs",
+        "new",
+        "_current_duration",
+        "_current_mortality",
+    )
+
     def __init__(self,
                  name,
                  severity,
@@ -234,6 +265,19 @@ class PermanentCondition:
     """
     TODO: DOCS
     """
+
+    __slots__ = (
+        "name",
+        "severity",
+        "congenital",
+        "moons_until",
+        "mortality",
+        "risks",
+        "illness_infectiousness",
+        "herbs",
+        "new",
+        "_current_mortality",
+    )
 
     def __init__(self,
                  name,
