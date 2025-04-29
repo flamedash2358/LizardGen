@@ -1206,7 +1206,7 @@ class ProfileScreen(Screens):
             "rogue",
             "former Clancat",
         ]:
-            beginning = History.get_beginning(self.the_cat)
+            beginning = self.the_cat.history.beginning
             if beginning:
                 text += " "
                 if beginning["clan_born"]:
@@ -1232,7 +1232,7 @@ class ProfileScreen(Screens):
         returns the adjusted scar text
         """
         scar_text = []
-        scar_history = History.get_death_or_scars(self.the_cat, scar=True)
+        scar_history = self.the_cat.history.get_death_or_scars(scar=True)
         if game.switches["show_history_moons"]:
             moons = True
         else:
@@ -1292,7 +1292,7 @@ class ProfileScreen(Screens):
         if self.the_cat.status in ["kittypet", "loner", "rogue", "former Clancat"]:
             return ""
 
-        mentor_influence = History.get_mentor_influence(self.the_cat)
+        mentor_influence = self.the_cat.history.mentor_influence
         influence_history = ""
 
         # First, just list the mentors:
@@ -1379,7 +1379,7 @@ class ProfileScreen(Screens):
 
             influence_history += " ".join(skill_influence)
 
-        app_ceremony = History.get_app_ceremony(self.the_cat)
+        app_ceremony = self.the_cat.history.app_ceremony
 
         graduation_history = ""
         if app_ceremony:
@@ -1473,9 +1473,9 @@ class ProfileScreen(Screens):
         """
         text = None
         death_history = self.the_cat.history.get_death_or_scars(
-            self.the_cat, death=True
+            death=True
         )
-        murder_history = self.the_cat.history.get_murders(self.the_cat)
+        murder_history = self.the_cat.history.murder
         if game.switches["show_history_moons"]:
             moons = True
         else:
@@ -1599,7 +1599,7 @@ class ProfileScreen(Screens):
         returns adjusted murder history text FOR THE MURDERER
 
         """
-        murder_history = History.get_murders(self.the_cat)
+        murder_history = self.the_cat.history.murder
         victim_text = ""
 
         if game.switches["show_history_moons"]:

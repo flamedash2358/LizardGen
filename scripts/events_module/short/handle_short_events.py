@@ -109,7 +109,7 @@ class HandleShortEvents:
         # checking if a murder reveal should happen
         if event_type == "misc":
             self.victim_cat = None
-            cat_history = History.get_murders(self.main_cat)
+            cat_history = self.main_cat.history.murder
             if cat_history:
                 if "is_murderer" in cat_history:
                     murder_history = cat_history["is_murderer"]
@@ -256,13 +256,8 @@ class HandleShortEvents:
                 other_cat = None
             else:
                 other_cat = self.random_cat
-            History.reveal_murder(
-                cat=self.main_cat,
-                other_cat=other_cat,
-                cat_class=Cat,
-                victim=self.victim_cat,
-                murder_index=self.murder_index,
-            )
+            History.reveal_murder(cat_class=Cat, murderer=self.main_cat, discoverer=other_cat, victim=self.victim_cat,
+                                  murder_index=self.murder_index)
 
         # change outsider rep
         if self.chosen_event.outsider:
@@ -556,6 +551,7 @@ class HandleShortEvents:
             if "m_c" in block["cats"]:
                 # death history
                 if self.chosen_event.m_c["dies"]:
+
                     # find history
                     if self.main_cat.status == "leader":
                         death_history = history_text_adjust(
@@ -583,20 +579,20 @@ class HandleShortEvents:
                         self.current_lives -= 1
                         if self.current_lives != game.clan.leader_lives:
                             while self.current_lives > game.clan.leader_lives:
-                                History.add_death(
-                                    self.main_cat,
+                                self.main_cat.history.add_death(
                                     "multi_lives",
                                     other_cat=self.random_cat,
                                 )
                                 self.current_lives -= 1
-                    History.add_death(
-                        self.main_cat, death_history, other_cat=self.random_cat
+                    self.main_cat.history.add_death(
+                        death_history, other_cat=self.random_cat
                     )
 
             # random_cat history
             if "r_c" in block["cats"]:
                 # death history
                 if self.chosen_event.r_c["dies"]:
+
                     if self.random_cat.status == "leader":
                         death_history = history_text_adjust(
                             block.get("lead_death"),
@@ -616,19 +612,19 @@ class HandleShortEvents:
                         self.current_lives -= 1
                         if self.current_lives != game.clan.leader_lives:
                             while self.current_lives > game.clan.leader_lives:
-                                History.add_death(
-                                    self.random_cat,
+                                self.random_cat.history.add_death(
                                     "multi_lives",
                                     other_cat=self.random_cat,
                                 )
                                 self.current_lives -= 1
-                    History.add_death(
-                        self.random_cat, death_history, other_cat=self.random_cat
+                    self.random_cat.history.add_death(
+                        death_history, other_cat=self.random_cat
                     )
 
             # multi_cat history
             if "multi_cat" in block["cats"]:
                 for cat in self.multi_cat:
+
                     if cat.status == "leader":
                         death_history = history_text_adjust(
                             block.get("lead_death"),
@@ -648,9 +644,9 @@ class HandleShortEvents:
                         self.current_lives -= 1
                         if self.current_lives != game.clan.leader_lives:
                             while self.current_lives > game.clan.leader_lives:
-                                History.add_death(cat, "multi_lives")
+                                cat.history.add_death("multi_lives")
                                 self.current_lives -= 1
-                    History.add_death(cat, death_history)
+                    cat.history.add_death(death_history)
 
             # new_cat history
             for abbr in block["cats"]:
@@ -663,8 +659,9 @@ class HandleShortEvents:
                                 game.clan,
                                 self.random_cat,
                             )
-                            History.add_death(
-                                new_cats[i], death_history, other_cat=self.random_cat
+                            new_cats[i].load_history()
+                            new_cats[i].history.add_death(
+                                death_history, other_cat=self.random_cat
                             )
 
     def handle_injury(self):
@@ -732,7 +729,7 @@ class HandleShortEvents:
                     history_text = history_text_adjust(
                         block["scar"], self.other_clan_name, game.clan, self.random_cat
                     )
-                    History.add_scar(cat, history_text)
+                    cat.history.add_scar(history_text)
                     break
         else:
             for block in self.chosen_event.history:
@@ -757,13 +754,8 @@ class HandleShortEvents:
                             self.random_cat,
                         )
                     if possible_scar or possible_death:
-                        History.add_possible_history(
-                            cat,
-                            injury,
-                            scar_text=possible_scar,
-                            death_text=possible_death,
-                            other_cat=self.random_cat,
-                        )
+                        cat.history.add_possible_history(injury, death_text=possible_death, scar_text=possible_scar,
+                                                         other_cat=self.random_cat)
 
     def handle_freshkill_supply(self, block, freshkill_pile: FreshkillPile):
         """
