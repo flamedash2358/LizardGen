@@ -2245,7 +2245,8 @@
     },
     "new_cat": [
       ["meeting", "loner", "exists"]
-    ]
+    ],
+    "exclude_involved": ["m_c"]
   },
   {
     "event_id": "multi_misc_any_hardtofind_outsider3",
@@ -2255,14 +2256,16 @@
       "desert"
     ],
     "season": ["any"],
+    "tags": ["clan_wide"],
     "weight": 20,
-    "event_text": "Tracks cross the border and then hurriedly cross out again, indicating the stranger didn't intrude intentionally.",
+    "event_text": "c_n finds tracks crossing the border and then hurriedly crossing out again, indicating the owner didn't intrude intentionally.",
     "m_c": {
         "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
     },
     "new_cat": [
       ["meeting", "loner", "exists"]
-    ]
+    ],
+    "exclude_involved": ["m_c"]
   },
   {
     "event_id": "multi_misc_any_hardtofind_rogue1",
@@ -2279,7 +2282,8 @@
     },
     "new_cat": [
       ["meeting", "rogue", "exists"]
-    ]
+    ],
+    "exclude_involved": ["m_c"]
   },
   {
     "event_id": "multi_misc_any_hardtofind_rogue2",
@@ -2296,7 +2300,8 @@
     },
     "new_cat": [
       ["meeting", "rogue", "exists"]
-    ]
+    ],
+    "exclude_involved": ["m_c"]
   },
   {
     "event_id": "multi_misc_any_hardtofind_rogue3",
@@ -2313,7 +2318,8 @@
     },
     "new_cat": [
       ["meeting", "rogue", "exists"]
-    ]
+    ],
+    "exclude_involved": ["m_c"]
   },
   {
     "event_id": "multi_misc_any_hardtofind_rogue4",
@@ -2324,13 +2330,14 @@
     ],
     "season": ["any"],
     "weight": 20,
-    "event_text": "Someone has been trying to conceal their presence out in the borderlands...",
+    "event_text": "A cat has been trying to conceal their presence out in the borderlands...",
     "m_c": {
         "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
     },
     "new_cat": [
       ["meeting", "rogue", "exists"]
-    ]
+    ],
+    "exclude_involved": ["m_c"]
   },
   {
     "event_id": "multi_misc_any_scandalous_other_clan1",
@@ -2450,6 +2457,7 @@
       "mountainous"
     ],
     "season": ["any"],
+    "tags": ["clan_wide"],
     "weight": 10,
     "event_text": "The thornbush might be on o_c_n's side of the border, but both Clans benefit from uprooting it before it can block the path further.",
     "m_c": {
@@ -2486,8 +2494,9 @@
       "mountainous"
     ],
     "season": ["any"],
+    "tags": ["clan_wide"],
     "weight": 10,
-    "event_text": "Tracks don't lie, even if o_c_n may. One of them has been traipsing across the border. It remains to be seen if that cat is a confused apprentice or a deliberate provacation.",
+    "event_text": "Tracks don't lie, even if o_c_n may. One of them has been traipsing across the border. It remains to be seen if that cat is a confused apprentice or a deliberate provocation.",
     "m_c": {
         "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
     },
@@ -2504,6 +2513,7 @@
       "mountainous"
     ],
     "season": ["any"],
+    "tags": ["clan_wide"],
     "weight": 10,
     "event_text": "An area of the border looks a little too pristine. Almost like o_c_n have been covering something up there.",
     "m_c": {
