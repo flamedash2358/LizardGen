@@ -84,6 +84,17 @@ def json_load():
                 if cat["eye_colour2"] == "BLUE2":
                     cat["eye_colour2"] = "COBALT"
 
+            if "tint" in cat:
+                if cat["tint"] == "none":
+                    cat["tint"] = None
+            if "white_patches_tint" in cat:
+                if cat["white_patches_tint"] == "none":
+                    cat["white_patches_tint"] = None
+
+            if "pattern" in cat:
+                cat["tortie_marking"] = cat["pattern"]
+                del cat["pattern"]
+
             new_cat.pelt = Pelt(
                 name=cat["pelt_name"],
                 length=cat["pelt_length"],
@@ -123,12 +134,12 @@ def json_load():
                     else "offwhite"
                 ),
                 white_patches=cat["white_patches"],
-                tortiebase=cat["tortie_base"],
-                tortiecolour=cat["tortie_color"],
-                tortiepattern=cat["tortie_pattern"],
-                pattern=cat["pattern"],
+                tortie_base=cat["tortie_base"],
+                tortie_colour=cat["tortie_color"],
+                tortie_pattern=cat["tortie_pattern"],
+                tortie_marking=cat["tortie_marking"],
                 skin=cat["skin"],
-                tint=cat["tint"] if "tint" in cat else "none",
+                tint=cat["tint"] if "tint" in cat else None,
                 scars=cat["scars"] if "scars" in cat else [],
                 accessory=cat["accessory"],
                 opacity=cat["opacity"] if "opacity" in cat else 100,
@@ -162,7 +173,7 @@ def json_load():
             )
             new_cat.moons = cat["moons"]
 
-            if "facets" in cat:
+            if "facets" in cat and cat["facets"] is not None:
                 facets = [int(i) for i in cat["facets"].split(",")]
                 new_cat.personality = Personality(
                     trait=cat["trait"],
@@ -321,7 +332,7 @@ def csv_load(all_cats):
             # CAT: ID(0) - prefix:suffix(1) - gender(2) - status(3) - age(4) - trait(5) - parent1(6) - parent2(7) - mentor(8)
             # PELT: pelt(9) - colour(10) - white(11) - length(12)
             # SPRITE: kitten(13) - apprentice(14) - warrior(15) - elder(16) - eye colour(17) - reverse(18)
-            # - white patches(19) - pattern(20) - tortiebase(21) - tortiepattern(22) - tortiecolour(23) - skin(24) - skill(25) - NONE(26) - spec(27) - accessory(28) -
+            # - white patches(19) - pattern(20) - tortie_base(21) - tortie_pattern(22) - tortie_colour(23) - skin(24) - skill(25) - NONE(26) - spec(27) - accessory(28) -
             # spec2(29) - moons(30) - mate(31)
             # dead(32) - SPRITE:dead(33) - exp(34) - dead for _ moons(35) - current apprentice(36)
             # (BOOLS, either TRUE OR FALSE) paralyzed(37) - no kits(38) - exiled(39)
@@ -387,15 +398,15 @@ def csv_load(all_cats):
                 (
                     the_cat.pelt.reverse,
                     the_cat.pelt.white_patches,
-                    the_cat.pelt.pattern,
+                    the_cat.pelt.tortie_marking,
                 ) = (attr[18], attr[19], attr[20])
                 game.switches[
                     "error_message"
                 ] = "8There was an error loading cat # " + str(attr[0])
                 (
-                    the_cat.pelt.tortiebase,
-                    the_cat.pelt.tortiepattern,
-                    the_cat.pelt.tortiecolour,
+                    the_cat.pelt.tortie_base,
+                    the_cat.pelt.tortie_pattern,
+                    the_cat.pelt.tortie_colour,
                 ) = (attr[21], attr[22], attr[23])
                 game.switches[
                     "error_message"

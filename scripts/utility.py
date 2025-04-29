@@ -596,7 +596,7 @@ def create_new_cat_block(
                     chosen_cat.name.give_suffix(
                         pelt=chosen_cat.pelt,
                         biome=game.clan.biome,
-                        tortiepattern=chosen_cat.pelt.tortiepattern,
+                        tortie_pattern=chosen_cat.pelt.tortie_pattern,
                     )
                 else:  # completely new name
                     chosen_cat.name.give_prefix(
@@ -607,7 +607,7 @@ def create_new_cat_block(
                     chosen_cat.name.give_suffix(
                         pelt=chosen_cat.pelt.colour,
                         biome=game.clan.biome,
-                        tortiepattern=chosen_cat.pelt.tortiepattern,
+                        tortie_pattern=chosen_cat.pelt.tortie_pattern,
                     )
 
             new_cats = [chosen_cat]
@@ -2697,21 +2697,21 @@ def generate_sprite(
         else:
             # Base Coat
             new_sprite.blit(
-                sprites.sprites[cat.pelt.tortiebase + cat.pelt.colour + cat_sprite],
+                sprites.sprites[cat.pelt.tortie_base + cat.pelt.colour + cat_sprite],
                 (0, 0),
             )
 
             # Create the patch image
-            if cat.pelt.tortiepattern == "Single":
+            if cat.pelt.tortie_pattern == "Single":
                 tortie_pattern = "SingleColour"
             else:
-                tortie_pattern = cat.pelt.tortiepattern
+                tortie_pattern = cat.pelt.tortie_pattern
 
             patches = sprites.sprites[
-                tortie_pattern + cat.pelt.tortiecolour + cat_sprite
+                tortie_pattern + cat.pelt.tortie_colour + cat_sprite
                 ].copy()
             patches.blit(
-                sprites.sprites["tortiemask" + cat.pelt.pattern + cat_sprite],
+                sprites.sprites["tortiemask" + cat.pelt.tortie_marking + cat_sprite],
                 (0, 0),
                 special_flags=pygame.BLEND_RGBA_MULT,
             )
@@ -2721,8 +2721,8 @@ def generate_sprite(
 
         # TINTS
         if (
-                cat.pelt.tint != "none"
-                and cat.pelt.tint in sprites.cat_tints["tint_colours"]
+            cat.pelt.tint is not None
+            and cat.pelt.tint in sprites.cat_tints["tint_colours"]
         ):
             # Multiply with alpha does not work as you would expect - it just lowers the alpha of the
             # entire surface. To get around this, we first blit the tint onto a white background to dull it,
@@ -2731,8 +2731,8 @@ def generate_sprite(
             tint.fill(tuple(sprites.cat_tints["tint_colours"][cat.pelt.tint]))
             new_sprite.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
         if (
-                cat.pelt.tint != "none"
-                and cat.pelt.tint in sprites.cat_tints["dilute_tint_colours"]
+            cat.pelt.tint is not None
+            and cat.pelt.tint in sprites.cat_tints["dilute_tint_colours"]
         ):
             tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
             tint.fill(tuple(sprites.cat_tints["dilute_tint_colours"][cat.pelt.tint]))
@@ -2746,9 +2746,9 @@ def generate_sprite(
 
             # Apply tint to white patches.
             if (
-                    cat.pelt.white_patches_tint != "none"
-                    and cat.pelt.white_patches_tint
-                    in sprites.white_patches_tints["tint_colours"]
+                cat.pelt.white_patches_tint is not None 
+                and cat.pelt.white_patches_tint
+                in sprites.white_patches_tints["tint_colours"]
             ):
                 tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
                 tint.fill(
@@ -2767,9 +2767,9 @@ def generate_sprite(
         if cat.pelt.points:
             points = sprites.sprites["white" + cat.pelt.points + cat_sprite].copy()
             if (
-                    cat.pelt.white_patches_tint != "none"
-                    and cat.pelt.white_patches_tint
-                    in sprites.white_patches_tints["tint_colours"]
+                cat.pelt.white_patches_tint is not None
+                and cat.pelt.white_patches_tint
+                in sprites.white_patches_tints["tint_colours"]
             ):
                 tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
                 tint.fill(
