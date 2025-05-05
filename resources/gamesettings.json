@@ -43,7 +43,7 @@
         ],
         "shaders": [
             "Enable Shaders",
-            "This will add a shading layer onto the cat sprites.",
+            "This will add a shading layer onto the lizard sprites.",
             false
         ],
         "gore": [
@@ -73,7 +73,7 @@
         ],
         "random relation": [
             "Randomize relationship values when creating Clan",
-            "Clan founder cats will start the game with established relationships.",
+            "Clan founder lizards will start the game with established relationships.",
             true
         ],
         "they them default": [
