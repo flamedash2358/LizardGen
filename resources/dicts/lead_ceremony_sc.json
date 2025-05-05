@@ -243,7 +243,7 @@
           "virtue": ["acceptance", "bravery", "certainty", "clear judgment", "confidence", "courage", "determination", "endurance", "sympathy", "farsightedness", "friendship", "instincts", "mercy", "strength", "unity"]
         },
         {
-          "text": "Paws treading softly, as if the very ground beneath recognizes {PRONOUN/r_c/poss} sacred touch, r_c gracefully navigates the gilded path that leads to m_c. In the depths of {PRONOUN/r_c/poss} tranquil gaze, a reflection of countless cycles shines forth, a testament to the unmatched wisdom that resides within. {PRONOUN/r_c/subject/CAP} inches forward, offering a life for [virtue].",
+          "text": "feet treading softly, as if the very ground beneath recognizes {PRONOUN/r_c/poss} sacred touch, r_c gracefully navigates the gilded path that leads to m_c. In the depths of {PRONOUN/r_c/poss} tranquil gaze, a reflection of countless cycles shines forth, a testament to the unmatched wisdom that resides within. {PRONOUN/r_c/subject/CAP} inches forward, offering a life for [virtue].",
           "virtue": ["acceptance", "bravery", "certainty", "clear judgment", "confidence", "courage", "determination", "endurance", "sympathy", "farsightedness", "friendship", "instincts", "mercy", "strength", "unity"]
         }
       ]
@@ -404,7 +404,7 @@
           "virtue": ["acceptance", "bravery", "certainty", "clear judgment", "confidence", "courage", "determination", "endurance", "sympathy", "farsightedness", "friendship", "instincts", "mercy", "strength", "unity"]
         },
         {
-          "text": "r_c hesitates for a moment, a vision of blood across m_c's paws assaulting the Ascended lizard's mind. But eventually, {PRONOUN/r_c/subject} {VERB/r_c/relent/relents} and gives a life for [virtue].",
+          "text": "r_c hesitates for a moment, a vision of blood across m_c's feet assaulting the Ascended lizard's mind. But eventually, {PRONOUN/r_c/subject} {VERB/r_c/relent/relents} and gives a life for [virtue].",
           "virtue": ["acceptance", "bravery", "certainty", "clear judgment", "confidence", "courage", "determination", "endurance", "sympathy", "farsightedness", "friendship", "instincts", "mercy", "strength", "unity"]
         }
       ]
@@ -484,7 +484,7 @@
           "virtue": ["acceptance", "bravery", "certainty", "clear judgment", "confidence", "courage", "determination", "endurance", "sympathy", "farsightedness", "friendship", "instincts", "mercy", "strength", "unity"]
         },
         {
-          "text": "m_c can't help but notice that r_c looks pleased as {PRONOUN/r_c/subject} {VERB/r_c/trot/trots} up. As {PRONOUN/r_c/subject} {VERB/r_c/give/gives} a life for [virtue], {PRONOUN/r_c/subject} {VERB/r_c/whisper/whispers} that c_n is surely in good paws.",
+          "text": "m_c can't help but notice that r_c looks pleased as {PRONOUN/r_c/subject} {VERB/r_c/trot/trots} up. As {PRONOUN/r_c/subject} {VERB/r_c/give/gives} a life for [virtue], {PRONOUN/r_c/subject} {VERB/r_c/whisper/whispers} that c_n is surely in good feet.",
           "virtue": ["acceptance", "bravery", "certainty", "clear judgment", "confidence", "courage", "determination", "endurance", "sympathy", "farsightedness", "friendship", "instincts", "mercy", "strength", "unity"]
         }
       ]
@@ -573,7 +573,7 @@
       "rank": ["warrior", "elder", "medicine cat", "mediator", "apprentice", "deputy"],
       "life_giving": [
         {
-          "text":  "r_c winces at a question m_c asks, tail low with second-paw embarrassment. Nonetheless, {PRONOUN/r_c/subject} {VERB/r_c/give/gives} a life for [virtue].",
+          "text":  "r_c winces at a question m_c asks, tail low with second-foot embarrassment. Nonetheless, {PRONOUN/r_c/subject} {VERB/r_c/give/gives} a life for [virtue].",
           "virtue": ["acceptance", "bravery", "certainty", "clear judgment", "confidence", "courage", "determination", "endurance", "sympathy", "farsightedness", "friendship", "instincts", "mercy", "strength", "unity"]
         },
         {
@@ -581,7 +581,7 @@
           "virtue": ["acceptance", "bravery", "certainty", "clear judgment", "confidence", "courage", "determination", "endurance", "sympathy", "farsightedness", "friendship", "instincts", "mercy", "strength", "unity"]
         },
         {
-          "text":  "r_c pushes m_c with a gentle paw, an amused huff escaping. m_c doesn't need any more [virtue], but r_c jokes and says that some extra can't hurt.",
+          "text":  "r_c pushes m_c with a gentle foot, an amused huff escaping. m_c doesn't need any more [virtue], but r_c jokes and says that some extra can't hurt.",
           "virtue": ["acceptance", "bravery", "certainty", "clear judgment", "confidence", "courage", "determination", "endurance", "sympathy", "farsightedness", "friendship", "instincts", "mercy", "strength", "unity"]
         }
       ]
