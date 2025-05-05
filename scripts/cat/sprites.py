@@ -6,7 +6,7 @@ import pygame
 import ujson
 
 from scripts.special_dates import SpecialDate, is_today
-from scripts.game_structure.game_essentials import game
+from scripts.game_structure import game
 
 logger = logging.getLogger(__name__)
 
